@@ -14,6 +14,7 @@ local skin = require("render.skin")
 local aw = require("ui.aw")
 local camera = require("render.camera")
 local sync = require("sync")
+local lipsync = require("core.lipsync")
 
 local obj = state.Objects
 local stgs = state.Settings
@@ -47,6 +48,8 @@ function events.tick()
     physic.tick()
     triggers.tick()
     skin.tick()
+    lipsync.tick()
+    lipsync.render()
     sync.tick()
 end
 

@@ -32,16 +32,6 @@ function Triggers.tick()
         animations.Knuckles.InventoryOpen:play()
         prevItemM = curItemM
     end
-
-
-    local isMicActive = voiceChat.get.isMicrophoneActive
-    local smoothVoiceLevel = voiceChat.get.smoothHostVoiceVolume
-
-    if isMicActive then
-        obj.TALK:setTime(smoothVoiceLevel):setSpeed(0):play()
-    else
-        obj.TALK:stop()
-    end
 end
 
 return Triggers

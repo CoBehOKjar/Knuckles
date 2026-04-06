@@ -34,6 +34,9 @@ State.Objects = {
         models.Knuckles.FirstPersonArm.FPPreShoulderRight,
     },
 
+    MOUTH = models.Knuckles.Root.Body.Torso.Head.Face,
+    NOSE = models.Knuckles.Root.Body.Torso.Head.Face.Nose,
+
     --?Input keys
     ALTKEY = keybinds:newKeybind("AltM", "key.keyboard.left.alt"),
     CTRLKEY = keybinds:newKeybind("CtrlM", "key.keyboard.left.control"),
@@ -59,7 +62,12 @@ State.Config = {
 
 --*Runtime
 State.Data = {
-
+    mouth = {
+        x = 1,
+        y = 1,
+        z = 1,
+        nose = 0
+    }
 }
 
 
