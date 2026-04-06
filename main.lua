@@ -33,6 +33,7 @@ animations.Knuckles.crouch:setBlendTime(0)
 animations.Knuckles.crawl:setBlendTime(0)
 
 function events.entity_init()
+    state.init()
     aw.init()
     triggers.init()
     pings.changeColor(cfg.color)
@@ -45,6 +46,7 @@ function events.tick()
     --Updating walking lean
     physic.tick()
     triggers.tick()
+    skin.tick()
     sync.tick()
 end
 

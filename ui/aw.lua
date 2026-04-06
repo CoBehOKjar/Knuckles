@@ -49,21 +49,19 @@ function AW.init()
         obj.Wheels["Nav"..i] = nav
     end
 
-    local colorH = wheels[1]:newAction()
-        :title(string.format("Цвет: "..string.format("%.3f", cfg.color.x).."\n§6Скролл\n§7ПКМ§f - Сброс"))
-        :setTexture(obj.ICO_H, 0, 0, 16, 16)
-        :setHoverTexture(obj.ICO_H, 16, 0, 16, 16)
-        :onScroll(skin.changeH)
-        :onRightClick(function() pings.changeColor(cfg.color.x, stgs.color.y, stgs.color.z) end)
-    obj.Wheels.colorH = colorH
+    local lowCam = wheels[1]:newAction()
+        :title("Заниженная камера: §5"..tostring(stgs.lowCam).."\n§7ЛКМ")
+        :setTexture(obj.ICO_CAMERA, 0, 0, 16, 16)
+        :setHoverTexture(obj.ICO_CAMERA, 16, 0, 16, 16)
+        :onLeftClick(function() camera.toggleLow(not stgs.lowCam) end)
+    obj.Wheels.lowCam = lowCam
 
-    local colorS = wheels[1]:newAction()
-        :title("Насыщенность: "..string.format("%.3f", cfg.color.y).."\n§6Скролл\n§7ПКМ§f - Сброс")
-        :setTexture(obj.ICO_S, 0, 0, 16, 16)
-        :setHoverTexture(obj.ICO_S, 16, 0, 16, 16)
-        :onScroll(skin.changeS)
-        :onRightClick(function() pings.changeColor(stgs.color.x, cfg.color.y, stgs.color.z) end)
-    obj.Wheels.colorS = colorS
+    local rainbow = wheels[1]:newAction()
+        :title("Переливание: §5"..tostring(stgs.rainbow).."\n§7ЛКМ")
+        :setTexture(obj.ICO_RBW, 0, 0, 16, 16)
+        :setHoverTexture(obj.ICO_RBW, 16, 0, 16, 16)
+        :onLeftClick(function() pings.toggleRainbow(not stgs.rainbow) end)
+    obj.Wheels.rainbow = rainbow
 
     local colorV = wheels[1]:newAction()
         :title("Яркость: "..string.format("%.3f", cfg.color.z).."\n§6Скролл\n§7ПКМ§f - Сброс")
@@ -73,13 +71,22 @@ function AW.init()
         :onRightClick(function() pings.changeColor(stgs.color.x, stgs.color.y, cfg.color.z) end)
     obj.Wheels.colorV = colorV
 
+    local colorS = wheels[1]:newAction()
+        :title("Насыщенность: "..string.format("%.3f", cfg.color.y).."\n§6Скролл\n§7ПКМ§f - Сброс")
+        :setTexture(obj.ICO_S, 0, 0, 16, 16)
+        :setHoverTexture(obj.ICO_S, 16, 0, 16, 16)
+        :onScroll(skin.changeS)
+        :onRightClick(function() pings.changeColor(stgs.color.x, cfg.color.y, stgs.color.z) end)
+    obj.Wheels.colorS = colorS
 
-    local lowCam = wheels[1]:newAction()
-        :title("Заниженная камера\n§7ЛКМ")
-        :setTexture(obj.ICO_CAMERA, 0, 0, 16, 16)
-        :setHoverTexture(obj.ICO_CAMERA, 16, 0, 16, 16)
-        :onLeftClick(function() camera.toggleLow(not stgs.lowCam) end)
-    obj.Wheels.lowCam = lowCam
+    local colorH = wheels[1]:newAction()
+        :title(string.format("Цвет: "..string.format("%.3f", cfg.color.x).."\n§6Скролл\n§7ПКМ§f - Сброс"))
+        :setTexture(obj.ICO_H, 0, 0, 16, 16)
+        :setHoverTexture(obj.ICO_H, 16, 0, 16, 16)
+        :onScroll(skin.changeH)
+        :onRightClick(function() pings.changeColor(cfg.color.x, stgs.color.y, stgs.color.z) end)
+    obj.Wheels.colorH = colorH
+    
 end
 
 return AW

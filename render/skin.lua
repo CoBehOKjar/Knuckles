@@ -33,7 +33,7 @@ function Skin.changeV(dir)
 end
 
 
-function pings.changeColor(a, b, c)
+function Skin.changeColor(a, b, c)
     local h, s, v
 
     if type(a) == "Vector3" or (type(a) == "table" and a.x) then
@@ -41,19 +41,36 @@ function pings.changeColor(a, b, c)
         s = a.y or a.s or 0
         v = a.z or a.v or 0
     else
-        h = a or 0
-        s = b or 0
-        v = c or 0
+        h = a or stgs.color.x or 0
+        s = b or stgs.color.y or 0
+        v = c or stgs.color.z or 0
     end
 
-    for _, part in ipairs(obj.skinParts) do
-        part:setColor(vectors.hsvToRGB(h, s, v))
-    end
     stgs.color = vec(h, s, v)
+    for _, part in ipairs(obj.skinParts) do
+        part:setColor(vectors.hsvToRGB(stgs.color))
+    end
 
     obj.Wheels.colorH:setTitle(string.format("Цвет: "..string.format("%.3f", stgs.color.x).."\n§6Скролл\n§7ПКМ§f - Сброс"))
     obj.Wheels.colorS:setTitle(string.format("Насыщенность: "..string.format("%.3f", stgs.color.y).."\n§6Скролл\n§7ПКМ§f - Сброс"))
     obj.Wheels.colorV:setTitle(string.format("Яркость: "..string.format("%.3f", stgs.color.z).."\n§6Скролл\n§7ПКМ§f - Сброс"))
+end
+
+
+function pings.changeColor(a, b, c)
+    Skin.changeColor(a,b,c)
+end
+
+function pings.toggleRainbow(toggle)
+    stgs.rainbow = toggle
+    obj.Wheels.rainbow:setTitle("Переливание: §5"..tostring(stgs.rainbow).."\n§7ЛКМ")
+end
+
+
+function Skin.tick()
+    if stgs.rainbow then
+        Skin.changeColor((stgs.color.x + 0.005) % 1)
+    end
 end
 
 return Skin

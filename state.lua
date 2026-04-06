@@ -4,6 +4,7 @@ local State = {}
 State.Settings = {
     lowCam = true,   --?Camera height in car
     color = nil,
+    rainbow = false,
 
     --.Debugging
     debugEvent = false,
@@ -46,6 +47,7 @@ State.Objects = {
     ICO_S = textures["textures.UI_S"] or textures["Knuckles.UI_S"],
     ICO_V = textures["textures.UI_V"] or textures["Knuckles.UI_V"],
     ICO_CAMERA = textures["textures.UI_Camera"] or textures["Knuckles.UI_Camera"],
+    ICO_RBW = textures["textures.UI_Rainbow"] or textures["Knuckles.UI_Rainbow"],
 }
 
 

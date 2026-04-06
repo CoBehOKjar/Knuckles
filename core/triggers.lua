@@ -1,9 +1,19 @@
+local state = require("state")
+
 local Triggers = {}
+
+local obj = state.Objects
 
 local curItemM = nil
 local prevItemM = nil
 local curItemO = nil
 local prevItemO = nil
+
+obj.ACTIONKEY.press = function()
+    local pitch = math.random(9.5, 10.5) / 10
+    pings.DOUNODUWAY(player:getPos(), pitch)
+end
+
 
 function Triggers.init()
     curItemM = player:getItem(1)
@@ -21,6 +31,16 @@ function Triggers.tick()
         animations.Knuckles.InventoryOpen:stop()
         animations.Knuckles.InventoryOpen:play()
         prevItemM = curItemM
+    end
+
+
+    local isMicActive = voiceChat.get.isMicrophoneActive
+    local smoothVoiceLevel = voiceChat.get.smoothHostVoiceVolume
+
+    if isMicActive then
+        obj.TALK:setTime(smoothVoiceLevel):setSpeed(0):play()
+    else
+        obj.TALK:stop()
     end
 end
 
