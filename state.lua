@@ -43,6 +43,7 @@ State.Objects = {
     SHIFTKEY = keybinds:newKeybind("ShiftM", "key.keyboard.left.shift"),
 
     ACTIONKEY = keybinds:newKeybind("Dounoduway", "key.keyboard.k"),
+    EKEY = keybinds:fromVanilla("key.inventory"),
 
     --?Textures
     ICO_PAGES = textures["textures.UI_Pages"] or textures["Knuckles.UI_Pages"],

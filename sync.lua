@@ -14,9 +14,10 @@ function pings.DOUNODUWAY(pos, pitch)
     end
 end
 
-function pings.syncState(color, rainbow)
+function pings.syncState(color, rainbow, invOpen)
     stgs.color = color
     stgs.rainbow = rainbow
+    stgs.invOpen = invOpen
 end
 
 function pings.syncMouth(x, y, z, nose)
@@ -26,11 +27,24 @@ function pings.syncMouth(x, y, z, nose)
     data.mouth.nose = nose
 end
 
+function pings.syncInv(open)
+    if open then
+        obj.INVENTORYCLOSE:stop()
+        obj.INVENTORYOPEN:play()
+        sounds:playSound("minecraft:block.barrel.open", player:getPos(), 0.5)
+        stgs.invOpen = true
+    else
+        obj.INVENTORYOPEN:stop()
+        obj.INVENTORYCLOSE:play()
+        sounds:playSound("minecraft:block.barrel.close", player:getPos(), 0.5)
+        stgs.invOpen = false
+    end
+end
 
 function Sync.tick()
     if world.getTime() % 200 == 0 then
         pings.changeColor(stgs.color)
-        pings.syncState(stgs.color, stgs.rainbow)
+        pings.syncState(stgs.color, stgs.rainbow, stgs.invOpen)
     end
 
     if world.getTime() % 3 == 0 then
